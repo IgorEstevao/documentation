@@ -33,6 +33,7 @@ export class FeedComponent implements OnInit {
   getData() {
     this.feedService.getFeed().subscribe((res) => {
       this.sections = res;
+      console.log('this.sections', this.sections);
     });
   }
 

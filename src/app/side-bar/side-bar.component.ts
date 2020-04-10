@@ -16,10 +16,13 @@ export class SideBarComponent implements OnInit {
 
   public novoheader = [];
 
+  public novoteste = [];
+
   constructor(
     private sideBarService: SidebarService,
     private feedService: FeedService
   ) { }
+  // tslint:disable: max-line-length
 
   ngOnInit(): void {
     // this.buildFakeSidebar();
@@ -30,9 +33,16 @@ export class SideBarComponent implements OnInit {
   teste() {
     if (this.searchTerm) {
       // TODO salvar no back o titulo e as categorias em um so array
-      this.categories = this.categories.filter(f => f.category.toLowerCase().includes(this.searchTerm.toLowerCase()));
+      // this.categories = this.categories.filter(f => f.category.toLowerCase().includes(this.searchTerm.toLowerCase()));
       // this.categories = this.categories.map(m=> m.samples.filter(f => f.subCategory.includes('agora')))
+      this.searchTerm = this.searchTerm.toLowerCase();
+      // this.novoheader = this.novoheader.filter(f => f.title.includes(this.searchTerm) || f.categories.some(n => n.includes(this.searchTerm)));
+      // this.categories = this.categories.filter(f => f.title.includes(this.searchTerm) || f.samples.some(n => n.subCategory.includes(this.searchTerm)));
+      this.novoteste = this.novoteste.filter(f => f.title.includes(this.searchTerm));
+      console.log('novoheader', this.categories);
     } else {
+      this.novoheader = [];
+      this.novoteste = []
       this.getData();
     }
   }
@@ -51,11 +61,19 @@ export class SideBarComponent implements OnInit {
   getData() {
     this.feedService.getFeed().subscribe((res: any) => {
       this.categories = res;
+      this.fodas(res);
       this.categories.forEach(e => {
         this.novoheader.push({ title: e.title, categories: e.samples.map(m => m.subCategory) });
       });
-      console.log('novoheader', this.novoheader);
     });
+  }
+
+  fodas(res) {
+    for (const item of res) {
+      item.samples.map(m => this.novoteste.push({title: m.subCategory}));
+    }
+    res.map(m => this.novoteste.push({ title: m.title }));
+    console.log('this.novoteste', this.novoteste);
   }
 
   scrollToElement(id) {

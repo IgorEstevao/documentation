@@ -9,7 +9,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 export class CodeBoxComponent implements OnChanges {
 
   @Input() syntax: any;
-  public propertie = /\w+\=/gi;
+  public propertie = /\w+(\.\[\w\])?\=/gi;
   public comment = /\#\s\w+/g;
   public quantifier = /\[[\D\d]+\]/gi;
   public notPropertie = /(?<=\=)[\D\d]+/gi;
@@ -26,12 +26,12 @@ export class CodeBoxComponent implements OnChanges {
       let arrayMatch = [];
       arrayMatch = this.syntax.split('!');
       arrayMatch.forEach(element => {
-        if (element.match(this.propertie) && !element.match(this.quantifier) && element.match(this.notPropertie)) {
+        if (element.match(this.propertie) && !element.match(this.notPropertie)[0].includes('[') && element.match(this.notPropertie)) {
           this.formatedArray.push(`<span style="color: blue;">${element.match(this.propertie)[0]}</span>${element.match(this.notPropertie)[0]}`);
         } else if (element.match(this.comment)) {
           this.formatedArray.push(`<span style="color: darkgreen;">${element.match(this.comment)[0]}</span>`);
-        } else if (element.match(this.quantifier)) {
-          this.formatedArray.push(`<span style="color: blue;">${element.match(this.propertie)[0]}</span><span style="color: purple;">${(element.match(this.quantifier)[0])}</span>`);
+        } else if (element.match(this.notPropertie)) {
+          this.formatedArray.push(`<span style="color: blue;">${element.match(this.propertie)[0]}</span><span style="color: purple;">${(element.match(this.notPropertie)[0])}</span>`);
         }
       });
     }

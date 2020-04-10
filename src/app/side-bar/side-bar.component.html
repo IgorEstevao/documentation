@@ -6,7 +6,16 @@
       <input type="text" placeholder="pesquisar" (keyup)="teste()" [(ngModel)]="searchTerm">
     </div>
     <div>
-      <div *ngFor="let item of novoheader">
+
+      <!-- <div *ngFor="let item of categories">
+        <div class="title" [ngClass]="{'highlight': hoverEvent === item.category}"
+            (click)="scrollToElement(item.category)">{{item.title}}</div>
+        <div class="category" *ngFor="let a of item.samples"
+            [ngClass]="{'highlight': hoverEvent === a.subCategory}" (click)="scrollToElement(a.subCategory)">
+            {{a.subCategory}}</div>
+    </div> -->
+
+      <!-- <div *ngFor="let item of novoheader">
         <div class="title" [ngClass]="{'highlight': hoverEvent === item.title}" (click)="scrollToElement(item.title)">
           {{item.title}}
         </div>
@@ -15,6 +24,11 @@
           {{a}}
         </div>
 
+      </div> -->
+
+
+      <div *ngFor="let item of novoteste">
+        <div class="title" [ngClass]="{'highlight': hoverEvent === item.category}" (click)="scrollToElement(item.title)">{{item.title}}</div>
       </div>
     </div>
   </div>
