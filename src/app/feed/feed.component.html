@@ -1,20 +1,22 @@
 <div id="main-content">
   <div class="container">
-    <section *ngFor="let item of sections" [attr.id]="item.title" (mouseenter)="mouseEnter(item.title)">
-      <h3>{{item.title}}</h3>
+    <section *ngFor="let item of feedList">
+      <h3 [attr.id]="item.title" name="categorie">{{item.title}}</h3>
       <div class="description">{{item.description}}</div>
       <div class="sample">
         <div>Sintaxes:</div>
-        <app-code-box [syntax]="item.allSytaxes"></app-code-box>
+        <div class="code-box"><app-code-box [syntax]="item.allSytaxes"></app-code-box></div>
       </div>
-      <div class="usage" *ngFor="let sample of item.samples" [attr.id]="sample.subCategory" (mouseenter)="mouseEnter(sample.subCategory)">
-        <span>TITULO :{{sample.subCategory}}</span>
-        <div class="col">
-          <div class="desc">{{sample.howToUse}}</div>
-          <app-code-box [syntax]="sample.sampleCode"></app-code-box>
-        </div>
-        <div class="image">
-          <img src="https://picsum.photos/200/300">
+      <div *ngFor="let sample of item.samples" [attr.id]="sample.subCategory" name="categorie">
+        <div><strong>{{sample.subCategory}}</strong></div>
+        <div class="usage" >
+          <div class="col">
+            <div class="desc">{{sample.howToUse}}</div>
+            <app-code-box [syntax]="sample.sampleCode"></app-code-box>
+          </div>
+          <div class="image">
+            <img src="https://picsum.photos/200/300">
+          </div>
         </div>
       </div>
     </section>

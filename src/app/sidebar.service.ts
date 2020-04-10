@@ -4,7 +4,7 @@ import { Injectable, EventEmitter } from '@angular/core';
   providedIn: 'root'
 })
 export class SidebarService {
-  public scrollEvent: EventEmitter<any> = new EventEmitter<any>();
-  public hoverSection: EventEmitter<any> = new EventEmitter<any>();
+  public scrollViewTo: EventEmitter<any> = new EventEmitter<any>();
+  public sectionOnScreen: EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 }
