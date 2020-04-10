@@ -1,0 +1,28 @@
+@import "src/styles.scss";
+
+.container{
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  // height: 40vh;
+  .row{
+    border: red solid;
+    &-preview{
+      border: blue solid;
+      .result{
+      border: yellow solid;
+      }
+    }
+    &-preview-image{
+      border: blue solid;
+      .result{
+        display: flex;
+        align-items: center;
+        border: yellow solid;
+      }
+    }
+  }
+}

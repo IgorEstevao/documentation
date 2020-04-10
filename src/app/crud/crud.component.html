@@ -1,0 +1,39 @@
+
+<div class="container">
+  <div>novo post</div>
+  <div class="row">
+    <span>titulo</span><input type="text" [(ngModel)]="title">
+  </div>
+  <div class="row">
+    <span>categoria</span><input type="text" [(ngModel)]="category">
+  </div>
+  <div class="row">
+    <span>descriçao</span><input type="text" [(ngModel)]="description">
+  </div>
+  <div class="row-preview">
+    <span>sintaxe</span><textarea [(ngModel)]="allSytaxes"></textarea>
+    <div class="result">
+      <app-code-box [syntax]="allSytaxes"></app-code-box>
+    </div>
+  </div>
+
+  <div class="row-preview-image" *ngFor="let item of samples">
+    <span>subCategory</span><input type="text" [(ngModel)]="item.subCategory">
+    <span>descricao</span><input type="text" [(ngModel)]="item.howToUse">
+    <span>codigo</span><textarea [(ngModel)]="item.sampleCode"></textarea>
+    <span>url imagem</span><input type="text" [(ngModel)]="item.urlImage">
+    <button (click)="add()">adcionar</button>
+    <button (click)="remove(item.id)">remover</button>
+    <div class="result">
+      <div class="col">
+        <span>descricao</span><input type="text">
+        <app-code-box [syntax]="item.sampleCode"></app-code-box>
+      </div>
+      <div class="col">
+        <img src="https://i.picsum.photos/id/1018/200/300.jpg">
+      </div>
+    </div>
+  </div>
+</div>
+
+<button (click)="save()">SALVAR</button>

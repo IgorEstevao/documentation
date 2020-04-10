@@ -1,0 +1,21 @@
+<div id="sidebar">
+  <div class="container">
+    <app-header-sidebar></app-header-sidebar>
+    <div class="filter">
+      <span>filtrar</span>
+      <input type="text" placeholder="pesquisar" (keyup)="teste()" [(ngModel)]="searchTerm">
+    </div>
+    <div>
+      <div *ngFor="let item of novoheader">
+        <div class="title" [ngClass]="{'highlight': hoverEvent === item.title}" (click)="scrollToElement(item.title)">
+          {{item.title}}
+        </div>
+
+        <div class="category" *ngFor="let a of item.categories" [ngClass]="{'highlight': hoverEvent === a}" (click)="scrollToElement(a)">
+          {{a}}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

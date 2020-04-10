@@ -1,0 +1,8 @@
+@import 'src/styles.scss';
+#parent {
+  margin-left: 200px;
+  // border: red solid;
+  @media only screen and (max-width:862px) {
+		margin-left: 0px;
+	}
+}

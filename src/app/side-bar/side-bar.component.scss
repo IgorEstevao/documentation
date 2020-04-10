@@ -1,0 +1,38 @@
+@import "src/styles.scss";
+
+#sidebar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  width: 200px;
+  overflow: hidden;
+  border-right: #cec3c3 solid 1px;
+	@media only screen and (max-width:862px) {
+		display: none;
+	}
+
+  .container {
+    padding: 15px;
+    .title {
+      transition: color 300ms;
+      font-weight: 600;
+      cursor: pointer;
+      &.highlight {
+        color: $sidebar-highlight;
+      }
+    }
+    .category {
+      cursor: pointer;
+      transition: color 400ms;
+      padding: 0px 0px 0px 10px;
+      &.highlight {
+        color: $sidebar-highlight;
+        font-weight: 600;
+      }
+    }
+  }
+  &:hover {
+    overflow: auto;
+  }
+}
