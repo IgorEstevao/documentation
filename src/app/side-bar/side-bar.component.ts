@@ -9,76 +9,55 @@ import { SidebarService } from '../sidebar.service';
 })
 export class SideBarComponent implements OnInit {
 
-  public sideBarSample = [];
-  public categories;
   public hoverEvent;
   public searchTerm;
-
-  public novoheader = [];
-
-  public novoteste = [];
+  public categoriesList = [];
+  public showFilter = false;
+  public filterList = [];
 
   constructor(
     private sideBarService: SidebarService,
     private feedService: FeedService
   ) { }
-  // tslint:disable: max-line-length
 
-  ngOnInit(): void {
-    // this.buildFakeSidebar();
+  ngOnInit() {
     this.getData();
-    this.sideBarService.hoverSection.subscribe(res => this.hoverEvent = res);
+    this.sideBarService.sectionOnScreen.subscribe(res => this.hoverEvent = res);
   }
 
-  teste() {
+  search() {
     if (this.searchTerm) {
-      // TODO salvar no back o titulo e as categorias em um so array
-      // this.categories = this.categories.filter(f => f.category.toLowerCase().includes(this.searchTerm.toLowerCase()));
-      // this.categories = this.categories.map(m=> m.samples.filter(f => f.subCategory.includes('agora')))
+      this.showFilter = true;
       this.searchTerm = this.searchTerm.toLowerCase();
-      // this.novoheader = this.novoheader.filter(f => f.title.includes(this.searchTerm) || f.categories.some(n => n.includes(this.searchTerm)));
-      // this.categories = this.categories.filter(f => f.title.includes(this.searchTerm) || f.samples.some(n => n.subCategory.includes(this.searchTerm)));
-      this.novoteste = this.novoteste.filter(f => f.title.includes(this.searchTerm));
-      console.log('novoheader', this.categories);
+      this.filterList = this.filterList.filter(f => f.title.includes(this.searchTerm));
     } else {
-      this.novoheader = [];
-      this.novoteste = []
+      this.showFilter = false;
+      this.categoriesList = [];
+      this.filterList = [];
       this.getData();
     }
   }
 
-  // buildFakeSidebar() {
-  //   for (let index = 0; index < 50; index++) {
-  //     this.sideBarSample.push(
-  //       {
-  //         titulo: `titulo:${index}`,
-  //         categoria: [`categoria${index}`, `categoria${index + 1}`, `categoria${index + 2}`]
-  //       }
-  //     );
-  //   }
-  // }
-
   getData() {
-    this.feedService.getFeed().subscribe((res: any) => {
-      this.categories = res;
-      this.fodas(res);
-      this.categories.forEach(e => {
-        this.novoheader.push({ title: e.title, categories: e.samples.map(m => m.subCategory) });
+    this.feedService.getFeed().subscribe((response: any) => {
+      this.getAllCategories(response);
+      response.forEach(e => {
+        this.categoriesList.push({ title: e.title, subCategories: e.samples.map(m => m.subCategory) });
       });
     });
   }
 
-  fodas(res) {
-    for (const item of res) {
-      item.samples.map(m => this.novoteste.push({title: m.subCategory}));
+  getAllCategories(response) {
+    for (const item of response) {
+      item.samples.map(m => this.filterList.push({title: m.subCategory}));
     }
-    res.map(m => this.novoteste.push({ title: m.title }));
-    console.log('this.novoteste', this.novoteste);
+    response.map(m => this.filterList.push({ title: m.title }));
   }
 
   scrollToElement(id) {
-    this.sideBarService.hoverSection.emit(id);
-    this.sideBarService.scrollEvent.emit(id);
+    this.showFilter = false;
+    this.sideBarService.sectionOnScreen.emit(id);
+    this.sideBarService.scrollViewTo.emit(id);
   }
 
 }

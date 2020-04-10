@@ -1,13 +1,13 @@
 <div id="main-content">
   <div class="container">
-    <section *ngFor="let item of sections" [attr.id]="item.title" (mouseenter)="mouseEnter(item.title)">
-      <h3>{{item.title}}</h3>
+    <section *ngFor="let item of feedList">
+      <h3 [attr.id]="item.title" name="categorie">{{item.title}}</h3>
       <div class="description">{{item.description}}</div>
       <div class="sample">
         <div>Sintaxes:</div>
         <div class="code-box"><app-code-box [syntax]="item.allSytaxes"></app-code-box></div>
       </div>
-      <div *ngFor="let sample of item.samples" [attr.id]="sample.subCategory" (mouseenter)="mouseEnter(sample.subCategory)">
+      <div *ngFor="let sample of item.samples" [attr.id]="sample.subCategory" name="categorie">
         <div><strong>{{sample.subCategory}}</strong></div>
         <div class="usage" >
           <div class="col">
