@@ -32,7 +32,7 @@ export class FeedComponent implements OnInit {
         this.sideBarService.sectionOnScreen.emit(this.allCategories[index].id);
         return;
       }
-      if (pixeisScrolled < this.allCategories[index + 1].posicao) {
+      if (pixeisScrolled <= this.allCategories[index + 1].posicao) {
         this.sideBarService.sectionOnScreen.emit(this.allCategories[index].id);
         return;
       }
@@ -53,6 +53,7 @@ export class FeedComponent implements OnInit {
     for (const item of categories) {
       this.allCategories.push({ id: item.id, posicao: item.offsetTop });
     }
+    this.sideBarService.sectionOnScreen.emit(this.allCategories[0].id);
   }
 
 }
