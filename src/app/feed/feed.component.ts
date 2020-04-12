@@ -10,6 +10,7 @@ export class FeedComponent implements OnInit {
 
   public feedList;
   public allCategories = [];
+  public isAdmin = false;
 
   constructor(
     private feedService: FeedService,

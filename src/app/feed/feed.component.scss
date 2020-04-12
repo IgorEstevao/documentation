@@ -1,4 +1,6 @@
 @import "src/styles.scss";
+
+// @import "src/flexboxgrid.scss";
 .container {
   height: 100vh;
   section {
@@ -45,6 +47,92 @@
           height: 200px;
         }
       }
+    }
+  }
+}
+
+
+.save{
+  color: royalblue;
+}
+
+
+.feed-container{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  .feed-header{
+    display: flex;
+    flex-direction: column;
+    // border-bottom: crimson 1px solid;
+    .title{
+      display: flex;
+      align-items: center;
+      height: 22px;
+      .crud{
+        display: flex;
+        width: 100px;
+        justify-content: space-around;
+        align-items: center;
+          // .save{
+          //   color: royalblue;
+          // }
+          // .save{
+          //   color: darkgreen;
+          // }
+          // .remove{
+          //   color: crimson;
+          // }
+      }
+    }
+    .description{
+      margin: 10px 0px 0px 0px;
+    }
+  }
+  .syntax-container{
+    margin: 10px 0px 0px 30px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: lightgray solid 1px;
+    .title{}
+    .description{
+      margin: 10px 0px 10px 0px;
+    }
+    .usage{
+      margin-bottom: 10px;
+    }
+    .codebox{
+      margin-bottom: 10px;
+    }
+    .sample{}
+    .code{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      min-height: 200px;
+      @media only screen and (max-width:654px) {
+        justify-content: center;
+        // min-width: 200px;
+        // max-width: 410px;
+      }
+      .codebox{
+        display: flex;
+        flex-direction: column;
+        margin: 0px 20px 10px 0px;
+        padding: 10px;
+        background-color: $light-blue;
+        border-radius: 5px;
+        min-width: 200px;
+        max-width: 410px;
+      }
+      .image-container{
+        img{
+          border-radius: 10px;
+        }
+      }
+    }
+    .link-docs{
+      margin: 10px 0px 0px 0px;
     }
   }
 }
