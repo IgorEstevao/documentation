@@ -8,13 +8,14 @@ import { FeedModel, SampleModel } from '../feed.model';
   styleUrls: ['./crud.component.scss']
 })
 export class CrudComponent {
-
+  // https://via.placeholder.com/150
+  public isAdmin = true;
+  public successPost = false;
   public title = '';
-  public category = '';
+  public tags = '';
   public description = '';
-  public allSytaxes = '';
   public samples = [new SampleModel()];
-  public codigo = '';
+  public deleted = '';
 
   constructor(
     private feedService: FeedService
@@ -25,17 +26,26 @@ export class CrudComponent {
   }
 
   remove(id) {
-    this.samples = this.samples.filter(f => f.id !== id);
+    this.deleted = id;
+    setTimeout(() => {
+      this.samples = this.samples.filter(f => f.id !== id);
+      this.deleted = '';
+    }, 1000);
   }
 
   save() {
     const body = new FeedModel();
     body.title = this.title;
-    body.category = this.category;
+    body.tags = this.tags.split(',');
     body.description = this.description;
-    body.allSytaxes = this.allSytaxes;
     body.samples = this.samples;
-    this.feedService.sendNewFeed(body).subscribe(res => console.log(res));
+    this.feedService.sendNewFeed(body).subscribe((res) => {
+      console.log('res', res);
+      this.successPost = true;
+      setTimeout(() => {
+        this.successPost = false;
+      }, 1000);
+    });
   }
 
 }

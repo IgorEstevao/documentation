@@ -1,28 +1,95 @@
 @import "src/styles.scss";
 
-.container{
-  border: solid;
+input{
+  border: black solid 1px;
+}
+
+.feed-container{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  // height: 40vh;
-  .row{
-    border: red solid;
-    &-preview{
-      border: blue solid;
-      .result{
-      border: yellow solid;
+  margin: 10px;
+  &.success{
+    background-color: greenyellow;
+  }
+  .feed-header{
+    display: flex;
+    flex-direction: column;
+    // border-bottom: crimson 1px solid;
+    .title{
+      display: flex;
+      align-items: center;
+      height: 22px;
+      .crud{
+        display: flex;
+        width: 100px;
+        justify-content: space-around;
+        align-items: center;
+          // .save{
+          //   color: royalblue;
+          // }
+          // .save{
+          //   color: darkgreen;
+          // }
+          // .remove{
+          //   color: crimson;
+          // }
       }
     }
-    &-preview-image{
-      border: blue solid;
-      .result{
-        display: flex;
-        align-items: center;
-        border: yellow solid;
+    .description{
+      margin: 10px 0px 0px 0px;
+    }
+  }
+  .syntax-container{
+    margin: 10px 0px 0px 30px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: lightgray solid 1px;
+    background-color: #fff;
+    &.deleted{
+      transition: all 700ms;
+      background-color: crimson;
+      transform: translateY(-393px);
+      z-index: -1;
+    }
+    .title{}
+    .description{
+      margin: 10px 0px 10px 0px;
+    }
+    .usage{
+      margin-bottom: 10px;
+    }
+    .codebox{
+      margin-bottom: 10px;
+    }
+    .sample{}
+    .code{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      min-height: 200px;
+      @media only screen and (max-width:654px) {
+        justify-content: center;
+        // min-width: 200px;
+        // max-width: 410px;
       }
+      .codebox{
+        display: flex;
+        flex-direction: column;
+        margin: 0px 20px 10px 0px;
+        padding: 10px;
+        background-color: $light-blue;
+        border-radius: 5px;
+        min-width: 200px;
+        max-width: 410px;
+      }
+      .image-container{
+        img{
+          border-radius: 10px;
+        }
+      }
+    }
+    .link-docs{
+      margin: 10px 0px 0px 0px;
     }
   }
 }

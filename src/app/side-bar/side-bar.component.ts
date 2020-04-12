@@ -42,14 +42,14 @@ export class SideBarComponent implements OnInit {
     this.feedService.getFeed().subscribe((response: any) => {
       this.getAllCategories(response);
       response.forEach(e => {
-        this.categoriesList.push({ title: e.title, subCategories: e.samples.map(m => m.subCategory) });
+        this.categoriesList.push({ title: e.title, subCategories: e.samples.map(m => m.title) });
       });
     });
   }
 
   getAllCategories(response) {
     for (const item of response) {
-      item.samples.map(m => this.filterList.push({title: m.subCategory}));
+      item.samples.map(m => this.filterList.push({title: m.title}));
     }
     response.map(m => this.filterList.push({ title: m.title }));
   }

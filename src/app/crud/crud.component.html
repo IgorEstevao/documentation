@@ -1,39 +1,38 @@
-
-<div class="container">
-  <div>novo post</div>
-  <div class="row">
-    <span>titulo</span><input type="text" [(ngModel)]="title">
-  </div>
-  <div class="row">
-    <span>categoria</span><input type="text" [(ngModel)]="category">
-  </div>
-  <div class="row">
-    <span>descriçao</span><input type="text" [(ngModel)]="description">
-  </div>
-  <div class="row-preview">
-    <span>sintaxe</span><textarea [(ngModel)]="allSytaxes"></textarea>
-    <div class="result">
-      <app-code-box [syntax]="allSytaxes"></app-code-box>
-    </div>
-  </div>
-
-  <div class="row-preview-image" *ngFor="let item of samples">
-    <span>subCategory</span><input type="text" [(ngModel)]="item.subCategory">
-    <span>descricao</span><input type="text" [(ngModel)]="item.howToUse">
-    <span>codigo</span><textarea [(ngModel)]="item.sampleCode"></textarea>
-    <span>url imagem</span><input type="text" [(ngModel)]="item.urlImage">
-    <button (click)="add()">adcionar</button>
-    <button (click)="remove(item.id)">remover</button>
-    <div class="result">
-      <div class="col">
-        <span>descricao</span><input type="text">
-        <app-code-box [syntax]="item.sampleCode"></app-code-box>
-      </div>
-      <div class="col">
-        <img src="https://i.picsum.photos/id/1018/200/300.jpg">
+<section class="feed-container" [ngClass]="{'success': successPost}">
+  <div class="feed-header">
+    <div class="title">
+      <input type="text" placeholder="titulo" [(ngModel)]="title">
+      <input type="text" placeholder="tags" [(ngModel)]="tags">
+      <div class="crud" *ngIf="isAdmin">
+        <span (click)="save()"><i class="fas fa-save"></i></span>
       </div>
     </div>
+    <div class="description"><input type="text" placeholder="descricao" [(ngModel)]="description"></div>
   </div>
-</div>
+  <div class="syntax-container" *ngFor="let item of samples" [ngClass]="{'deleted': deleted == item.id.toString()}">
+    <div class="title">
+      <input type="text" placeholder="Titulo Syntax" [(ngModel)]="item.title">
+      <span (click)="add()"><i class="far fa-plus-square fa-lg"></i></span>
+      <span (click)="remove(item.id)"><i class="far fa-trash-alt fa-lg"></i></span>
+    </div>
+    <div class="description"><input type="text" placeholder="descricao" [(ngModel)]="item.description"></div>
+      <div class="usage">Usage: <input type="text" placeholder="Usage" [(ngModel)]="item.usage"></div>
+      <div class="codebox">
+        <app-code-box [syntax]="item.usage"></app-code-box>
+      </div>
+      <div class="sample">Sample: 
+        <input type="text" placeholder="Sample" [(ngModel)]="item.sampleCode">
+        <input type="text" placeholder="link image" [(ngModel)]="item.urlImage">
+      </div>
+      <div class="code">
+        <div class="codebox">
+          <app-code-box [syntax]="item.sampleCode"></app-code-box>
+        </div>
+        <div class="image-container">
+          <img [src]="item.urlImage">
+        </div>
+      </div>
+      <div class="link-docs"><input type="text" placeholder="link github" [(ngModel)]="item.linkGitHub"></div>
+  </div>
 
-<button (click)="save()">SALVAR</button>
+</section>

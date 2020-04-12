@@ -1,15 +1,16 @@
 export class FeedModel {
   title: string;
-  category: string;
   description: string;
-  allSytaxes: string;
+  tags: any[];
   samples: SampleModel[];
 }
 
 export class SampleModel {
   id = new Date().getTime();
-  subCategory: string;
-  howToUse: string;
+  title: string;
+  description: string;
+  usage: string;
   sampleCode: string;
-  urlImage: string;
+  urlImage = 'https://via.placeholder.com/150';
+  linkGitHub: string;
 }

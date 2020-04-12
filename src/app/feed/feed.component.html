@@ -25,79 +25,35 @@
 
 <!-- com flexbox -->
 
-<section class="feed-container">
+<section class="feed-container" *ngFor="let item of feedList">
   <div class="feed-header">
-    <div class="title">Titulo Sessao
+    <div class="title" [attr.id]="item.title" name="categorie">
+      {{item.title}}
       <div class="crud" *ngIf="isAdmin">
         <span><i class="save fas fa-save"></i></span>
         <span><i class="far fa-edit edit"></i></span>
         <span><i class="far fa-trash-alt delete"></i></span>
       </div>
     </div>
-    <div class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, sed reiciendis, minima
-      dolorem
-      sapiente necessitatibus magnam, voluptatum exercitationem culpa dolorum libero? Exercitationem hic qui excepturi.
-      Aliquam molestiae soluta quas modi.</div>
+    <div class="description">{{item.description}}</div>
   </div>
-  <div class="syntax-container">
-    <div class="title">Titulo Syntax</div>
-    <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit exercitationem ducimus
-      natus officia provident placeat harum animi sequi quaerat, soluta repellat recusandae nesciunt nemo, facilis
-      quisquam, aut sunt magni sapiente.</div>
+  <div class="syntax-container" *ngFor="let sample of item.samples" [attr.id]="sample.title" name="categorie">
+    <div class="title">{{sample.title}}</div>
+    <div class="description">{{sample.description}}</div>
       <div class="usage">Usage:</div>
       <div class="codebox">
-        <app-code-box [syntax]="'fodas=chocolate.png'"></app-code-box>
+        <app-code-box [syntax]="sample.usage"></app-code-box>
       </div>
       <div class="sample">Sample:</div>
       <div class="code">
         <div class="codebox">
-          <app-code-box [syntax]="'fodas=chocolateafasfasfasfasfasfasfasfasfasfasfasfasfaaaaaaaaaaaaaaaaaa.png!fodas=chocolate.png!fodas=chocolate.png!# comentario fodas'"></app-code-box>
+          <app-code-box [syntax]="sample.sampleCode"></app-code-box>
         </div>
         <div class="image-container">
-          <img src="https://via.placeholder.com/150">
+          <img [src]="sample.urlImage">
         </div>
       </div>
-      <div class="link-docs">link documentaçao</div>
-  </div>
-  <div class="syntax-container">
-    <div class="title">Titulo Syntax</div>
-    <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit exercitationem ducimus
-      natus officia provident placeat harum animi sequi quaerat, soluta repellat recusandae nesciunt nemo, facilis
-      quisquam, aut sunt magni sapiente.</div>
-      <div class="usage">Usage:</div>
-      <div class="codebox">
-        <app-code-box [syntax]="'fodas=chocolate.png'"></app-code-box>
-      </div>
-      <div class="sample">Sample:</div>
-      <div class="code">
-        <div class="codebox">
-          <app-code-box [syntax]="'fodas=chocolateafasfasfasfasfasfasfasfasfasfasfasfasfaaaaaaaaaaaaaaaaaa.png!fodas=chocolate.png!fodas=chocolate.png!# comentario fodas'"></app-code-box>
-        </div>
-        <div class="image-container">
-          <img src="https://via.placeholder.com/150">
-        </div>
-      </div>
-      <div class="link-docs">link documentaçao</div>
-  </div>
-  <div class="syntax-container">
-    <div class="title">Titulo Syntax</div>
-    <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit exercitationem ducimus
-      natus officia provident placeat harum animi sequi quaerat, soluta repellat recusandae nesciunt nemo, facilis
-      quisquam, aut sunt magni sapiente.</div>
-      <div class="usage">Usage:</div>
-      <div class="codebox">
-        <app-code-box [syntax]="'fodas=chocolate.png'"></app-code-box>
-      </div>
-      <div class="sample">Sample:</div>
-      <div class="code">
-        <div class="codebox">
-          <app-code-box [syntax]="'fodas=chocolateafasfasfasfasfasfasfasfasfasfasfasfasfaaaaaaaaaaaaaaaaaa.png!fodas=chocolate.png!fodas=chocolate.png!# comentario fodas'"></app-code-box>
-        </div>
-        <div class="image-container">
-          <img src="https://via.placeholder.com/150">
-        </div>
-      </div>
-      <div class="link-docs">link documentaçao</div>
+      <div class="link-docs">{{sample.linkGitHub}}</div>
   </div>
 
 </section>
